@@ -34,14 +34,34 @@
 33. how do you store your secrets in AWS secret manager?
 34. how do you stay updated with the new dev tools and technologies, and how do you decide which ones to integrate into your workflows?
 35. Can you explain a situation where you had to lead a project or an initiative within a DevOps team?
+36. what is the difference between a deployment daemonset and statefulset in Kubernetes?
+37. Can you share your screen and write the manifest file Deployment?
+38. how do you configure a Jenkins pipeline for a containerized application?
+39. how do you manage a state in Terraform?
+40. What are the Terraform models, sir, and why are they used?
+41. What files you mention in the modules?
+42. What is,an Ansible playbook and how it is structured?
+43. How do you set up alerting in a Prometheus?
+44. Can you explain how Grafana integrates with Prometheus, for visualization?
+45. Do you have any experience in bash script?
+46. What what about Python?
+47. Jenkins pipeline is stuck on a particular stage. How do you debug it?
+48. Your terraform apply command is failing. Okay. What are the steps to prepare for troubleshooting?
+49. An EC2 instance is unable to connect to an RDS database. What could be the issue?
+50. How you will update the version in RDS? In terraform.
+51. how you handle the situation where the deployment fails in production?
+52. What about the Bluegreen deployment?Have you ever come up with it? how we switch the traffic?
+53. Can you explain the role of Docker in your CICD pipelines? Like, how do you ensure the security of containers in your workflow?
+54. Can you provide an example where you identified and fixed the security vulnerability using these tools within the pipeline?
+55. Can you expand your experience with the AWS services.
 # Service mesh
 
-1) Main components of servicemesh.
-2) What problem does service mesh solve in microservice architecture.
-3) What is the role of sidecars in servicemesh.
-4) How does servicemesh improve communication between microservices.
-5) How is servicemesh helping in deployments.
-6) How does servicemesh handles multi cloud practitioner multi cluster environments.
-7) What is a process of configuring servicemesh in Kubernetes env.
-8) How does servicemesh differs from traditional load balancing and traditional networking.
-9) What do you understand by servicemesh.
+56) Main components of servicemesh.
+57) What problem does service mesh solve in microservice architecture.
+58) What is the role of sidecars in servicemesh.
+59) How does servicemesh improve communication between microservices.
+60) How is servicemesh helping in deployments.
+61) How does servicemesh handles multi cloud practitioner multi cluster environments.
+62) What is a process of configuring servicemesh in Kubernetes env.
+63) How does servicemesh differs from traditional load balancing and traditional networking.
+64) What do you understand by servicemesh.
