@@ -34,4 +34,14 @@
 33. how do you store your secrets in AWS secret manager?
 34. how do you stay updated with the new dev tools and technologies, and how do you decide which ones to integrate into your workflows?
 35. Can you explain a situation where you had to lead a project or an initiative within a DevOps team?
+# Service mesh
 
+1) Main components of servicemesh.
+2) What problem does service mesh solve in microservice architecture.
+3) What is the role of sidecars in servicemesh.
+4) How does servicemesh improve communication between microservices.
+5) How is servicemesh helping in deployments.
+6) How does servicemesh handles multi cloud practitioner multi cluster environments.
+7) What is a process of configuring servicemesh in Kubernetes env.
+8) How does servicemesh differs from traditional load balancing and traditional networking.
+9) What do you understand by servicemesh.
