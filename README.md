@@ -54,14 +54,25 @@
 53. Can you explain the role of Docker in your CICD pipelines? Like, how do you ensure the security of containers in your workflow?
 54. Can you provide an example where you identified and fixed the security vulnerability using these tools within the pipeline?
 55. Can you expand your experience with the AWS services.
+56. What do you know about API Gateway?
+57. What all AWS services you have worked on.
+58) Write a Terraform code to provision EC2 and how will you refer to the EC2 instance id created, write an Ansible playbook for installing python on the EC2 server that is created.
+59) Tell us about Disaster recovery strategies.
+60) What all Kubernetes services you have used 
+61) What all monitoring tools have you used.
+62) Write a bash script to read the last 10 lines of a file and how to get lines having word "out of memory''.
+63) How service mesh is used.
+64) How have you optimized codes.
+65) What security tools are you using.
+66) If you have exhausted all ip addresses of your vpc,what will you do
 # Service mesh
 
-56) Main components of servicemesh.
-57) What problem does service mesh solve in microservice architecture.
-58) What is the role of sidecars in servicemesh.
-59) How does servicemesh improve communication between microservices.
-60) How is servicemesh helping in deployments.
-61) How does servicemesh handles multi cloud practitioner multi cluster environments.
-62) What is a process of configuring servicemesh in Kubernetes env.
-63) How does servicemesh differs from traditional load balancing and traditional networking.
-64) What do you understand by servicemesh.
+67) Main components of servicemesh.
+68) What problem does service mesh solve in microservice architecture.
+69) What is the role of sidecars in servicemesh.
+70) How does servicemesh improve communication between microservices.
+71) How is servicemesh helping in deployments.
+72) How does servicemesh handles multi cloud practitioner multi cluster environments.
+73) What is a process of configuring servicemesh in Kubernetes env.
+74) How does servicemesh differs from traditional load balancing and traditional networking.
+75) What do you understand by servicemesh.
