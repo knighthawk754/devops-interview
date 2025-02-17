@@ -15,4 +15,23 @@
 15. what is the dynamic auto scaling?
 16. What is the difference between Security groups and NACL?
 
-![[Screenshot_20250217-143935.png]
+17. how will you manage this and see your information like credentials and API keys in Docker containers?
+18. how do you ensure high availability and scalability for applications deployed in Kubernetes?
+19. How do you configure artifactory for both Maven and Docker repositories? 
+20. How do you handle challenges in meeting deadlines and managing dependencies across various teams?
+21. How do you manage branching and merging strategies?
+22. how do you secure sensitive data credentialing data repositories? In the GitHub repositories?
+23. What is your experience with the GitHub Actions?
+24. How do you integrate, code quality checks?
+25. What kind of custom metrics did you monitor using CloudWatch, and how did you help you proactively identify issues?
+26. Have you used AWS event bridge with lambda and what was it for?
+27. What are some best practices you follow to ensure that your DevOps pipelines are scalable, maintainable, and efficient?
+28. what is, one of the biggest challenges you faced in automating CICD and infrastructure provisioning, and how did you overcome it?
+29. Explain the difference between the EC 2 instances instance types.
+30. How do you troubleshoot the failing pod in Kubernetes?
+31. How do you document your infrastructure and automation scripts? 
+32. How do you use, Ansible Vault to connect secrets?
+33. how do you store your secrets in AWS secret manager?
+34. how do you stay updated with the new dev tools and technologies, and how do you decide which ones to integrate into your workflows?
+35. Can you explain a situation where you had to lead a project or an initiative within a DevOps team?
+
