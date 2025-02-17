@@ -1,16 +1,3 @@
-What is jenkins shared libraries 
-What is branching strategics 
-How you can merge conflict 
-Jenkins pipeline flow 
-Security tool are using 
-
-*Code quality tool sonarqube* 
-*Owasp tool for dependency check for third party tool* 
-
-What artifacts are using 
-What are you deploying 
-What is difference run command and cmd command in docker 
-
 1. Write a Terraform code to create multiple S3 buckets
 2. How you managed statefile
 3. So how are you managing the conflict? State file conflicts
