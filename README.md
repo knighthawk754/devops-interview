@@ -14,3 +14,4 @@
 14. So what is the difference between the S3 bucket policies and acls?
 15. what is the dynamic auto scaling?
 16. What is the difference between Security groups and NACL?
+![[Screenshot_20250217-143935.png]]
