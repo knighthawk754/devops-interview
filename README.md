@@ -875,7 +875,41 @@ Run:
 ```sh
 aws ec2 describe-subnets --query "Subnets[*].{ID:SubnetId, AvailableIPs:AvailableIpAddressCount}"
 ```
-✅ **Regular monitoring** ensures optimal usage.  
+✅ **Regular monitoring** ensures optimal usage.
+
+69) .bashrc file.
+70) Run levels in Linux
+71) Namespaces in linux
+72) What happens first when Lyinux server is started.
+73) What are daemon services.
+74) How will you mount a storage to a filesystem.
+lsblk
+sudo mkdir -p /mnt/storage
+sudo mount dev/sda2 /mnt/storage
+75) What are Git semantics.
+76) How will you resolve merge conflicts
+77) What branching strategies you follow.
+78) Write Pipeline Script
+79) How will you trigger a pipeline for Dev , QA and prod
+80) Write docker file to install python
+81) difference between COPY and ADD
+82) difference between CMD and ENTRYPOINT
+83) How to know which port container is running.
+84) What is the flow when kubectl apply -f manifest.yml runs.
+85) What is ingress, what kind of routing it provides.
+86) what does kube-proxy helps in.
+87) What does kubelet do.
+88) What are default namespaces.
+89) In which services Cluster IP service will be used.
+90) What are subnets,  how do you know that it is private or public subnet
+91) What is VPC peering.
+92) How will you expose private subnet servers to internet.
+93) how to unlock the state file when it is locked in remote backend
+94) write a multistage DockerFile for java
+95) how will you save the credentials and how will you refer in the jenkins pipeline
+96) how to you will connect the 2 gitlabs which is hosted on the 2 regions
+97) how will you run the single jenkins pipeline in multiple enviroment  
+
 
 # Service mesh
 
