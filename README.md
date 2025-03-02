@@ -877,38 +877,173 @@ aws ec2 describe-subnets --query "Subnets[*].{ID:SubnetId, AvailableIPs:Availabl
 ```
 ✅ **Regular monitoring** ensures optimal usage.
 
-69) .bashrc file.
-70) Run levels in Linux
-71) Namespaces in linux
-72) What happens first when Lyinux server is started.
-73) What are daemon services.
-74) How will you mount a storage to a filesystem.
-lsblk
-sudo mkdir -p /mnt/storage
-sudo mount dev/sda2 /mnt/storage
-75) What are Git semantics.
-76) How will you resolve merge conflicts
-77) What branching strategies you follow.
-78) Write Pipeline Script
-79) How will you trigger a pipeline for Dev , QA and prod
-80) Write docker file to install python
-81) difference between COPY and ADD
-82) difference between CMD and ENTRYPOINT
-83) How to know which port container is running.
-84) What is the flow when kubectl apply -f manifest.yml runs.
-85) What is ingress, what kind of routing it provides.
-86) what does kube-proxy helps in.
-87) What does kubelet do.
-88) What are default namespaces.
-89) In which services Cluster IP service will be used.
-90) What are subnets,  how do you know that it is private or public subnet
-91) What is VPC peering.
-92) How will you expose private subnet servers to internet.
-93) how to unlock the state file when it is locked in remote backend
-94) write a multistage DockerFile for java
-95) how will you save the credentials and how will you refer in the jenkins pipeline
-96) how to you will connect the 2 gitlabs which is hosted on the 2 regions
-97) how will you run the single jenkins pipeline in multiple enviroment  
+1) .bashrc file.
+The `. bashrc file` is a configuration file for the Bash shell. The file consists of commands, functions, aliases, and scripts that execute every time a Bash session starts on Linux or macOS
+1) Run levels in Linux
+2) Namespaces in linux
+   Namespaces in Linux are a kernel feature that isolate processes from each other by limiting the resources they can use 
+  **Network namespace**: Isolates network interfaces, routing tables, and firewall rules 
+- **User namespace**: Isolates user accounts running processes 
+- **Mount namespace**: Isolates mount points so that processes in different namespaces can't see each other's files
+- **PID namespace**: Separates processes so that processes in the child namespace can't know about the parent process
+- **IPC namespace**: Isolates process communication mechanisms like semaphores, message queues, and shared memory segments
+1) What happens first when Lyinux server is started.
+   Refer to this doc 
+   https://www.freecodecamp.org/news/the-linux-booting-process-6-steps-described-in-detail/
+2) What are daemon services.
+   A **daemon service** is a computer program that runs continuously in the background of an operating system, performing various tasks without direct user interaction
+3) How will you mount a storage to a filesystem.
+`lsblk`
+`sudo mkdir -p /mnt/storage`
+`sudo mount dev/sda2 /mnt/storage`
+1) What are Git semantics.
+   Git semantics refer to conventions and practices that add meaningful context to Git operations, enhancing collaboration and automation. Key aspects include
+   `<type>[optional scope]: <description>`
+For reference use this below doc:
+https://dev.to/ghostaram/writing-meaningful-git-commit-messages-with-semantic-tags-1dim
+
+1) How will you resolve merge conflicts
+2) What branching strategies you follow.
+3) Write Pipeline Script
+4) How will you trigger a pipeline for Dev , QA and prod
+https://www.youtube.com/watch?v=WUra9ugnVhs&t=80s
+5) what is multibranch pipeline
+6) Write docker file to install python
+```
+# Use an official Python base image
+FROM python:3.11-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy application files to the container
+COPY . .
+
+# Install dependencies (if a requirements.txt file exists)
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Set the default command to run Python
+CMD ["python"]
+```
+
+7) Write multistage docker file to deploy the small application in java
+```
+# Stage 1: Build Stage
+FROM maven:3.9.4-eclipse-temurin-17 AS build
+
+# Set working directory
+WORKDIR /app
+
+# Copy Maven project files
+COPY pom.xml .
+COPY src ./src
+
+# Build the application
+RUN mvn clean package -DskipTests
+
+# Stage 2: Runtime Stage
+FROM eclipse-temurin:17-jre
+
+# Set working directory
+WORKDIR /app
+
+# Copy the built JAR file from the build stage
+COPY --from=build /app/target/*.jar app.jar
+
+# Expose application port (modify as needed)
+EXPOSE 8080
+
+# Command to run the application
+CMD ["java", "-jar", "app.jar"]
+```
+8) difference between COPY and ADD
+| Feature        | COPY                          | ADD                          |
+|--------------|-----------------------------|-----------------------------|
+| **Basic Function** | Copies files/directories from source to destination | Copies files like `COPY`, but also supports additional features |
+| **Remote URL Support** | ❌ No, cannot fetch files from URLs | ❌ No, does not support remote URLs |
+| **Extracts Archives** | ❌ No, copies `.tar`, `.zip` as is | ✅ Yes, automatically extracts `.tar` files (but not `.zip`) |
+| **Local Files & Directories** | ✅ Yes | ✅ Yes |
+| **Recommended Use** | When only copying files/directories | When automatic extraction of `.tar` files is needed |
+| **Security Consideration** | Safer, as it does only copying | Less secure due to implicit extraction behavior |
+| **Syntax** | `COPY <source> <destination>` | `ADD <source> <destination>` |
+
+9) difference between CMD and ENTRYPOINT
+10) How to know which port container is running.
+11) What is the flow when kubectl apply -f manifest.yml runs.
+12) What is ingress, what kind of routing it provides.
+13) what does kube-proxy helps in.
+14) What does kubelet do.
+## **📌 Overview**
+`kubelet` is a critical component of Kubernetes that runs on **each node** in the cluster. It ensures that the containers in a **Pod** are running and remain in the desired state.
+
+## **🔹 Key Responsibilities**
+| Feature | Description |
+|---------|------------|
+| **Pod Management** | Ensures that Pods are running as defined in the PodSpec. |
+| **Container Lifecycle** | Starts, stops, and restarts containers as needed. |
+| **Health Checks** | Monitors container health via **liveness** and **readiness probes**. |
+| **Communicates with API Server** | Receives instructions from the Kubernetes API Server. |
+| **Logs & Metrics Collection** | Integrates with tools like Prometheus for monitoring. |
+| **Works with Container Runtime** | Uses Docker, containerd, or CRI-O to manage containers. |
+| **Syncs Node Status** | Updates the API server about node status (CPU, memory, etc.). |
+
+## **🔹 How Kubelet Works**
+1. **Receives Pod Specifications** from the API Server.
+2. **Interacts with the Container Runtime** (Docker, containerd) to start/stop containers.
+3. **Performs health checks** on Pods and restarts them if they fail.
+4. **Reports node status** back to the control plane.
+
+## **🔹 Commands to Check Kubelet Status**
+```sh
+# Check if kubelet is running
+systemctl status kubelet
+
+# Restart kubelet
+systemctl restart kubelet
+
+# Check kubelet logs
+journalctl -u kubelet -f
+```
+15) What are default namespaces.
+Kubernetes comes with **four default namespaces** that help organize cluster resources.  
+
+## **📌 List of Default Namespaces**
+| Namespace | Description |
+|-----------|------------|
+| **default** | Used for resources that don't specify a namespace. |
+| **kube-system** | Contains system components like the API server, controller manager, scheduler, and kube-proxy. |
+| **kube-public** | Readable by everyone, typically used for publicly accessible data. |
+| **kube-node-lease** | Stores node heartbeat leases to improve node failure detection. |
+
+---
+
+## **🔹 Details of Each Namespace**
+
+### **1️⃣ default**
+- When you create a Pod **without specifying a namespace**, it is placed in `default`.  
+- Example:
+```
+  kubectl get pods --namespace=default
+```
+
+
+16) In which services Cluster IP service will be used.
+ClusterIP is the **default** service type in Kubernetes. It is used for **internal communication** between Pods **inside** the cluster.
+17) What are subnets,  how do you know that it is private or public subnet
+18) What is VPC peering.
+VPC peering is a networking connection that allows two or more Virtual Private Clouds (VPCs) to communicate with each other
+https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html#:~:text=A%20VPC%20peering%20connection%20is,are%20within%20the%20same%20network.
+19) How will you expose private subnet servers to internet.
+20) how to unlock the state file when it is locked in remote backend
+     `terraform force-unlock <lock_id>`
+21) write a multistage DockerFile for java
+22) how will you save the credentials and how will you refer in the jenkins pipeline
+23) how to you will connect the 2 gitlabs which is hosted on the 2 regions
+24) how will you run the single jenkins pipeline in multiple enviroment  
+25) what is gated checkedin 
+26) where will save the passwords in aws and how do you call in pipelines
+27) what is SBOM tool
+
 
 
 # Service mesh
