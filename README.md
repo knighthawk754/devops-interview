@@ -48,7 +48,7 @@ When Terraform runs, it acquires a lock in DynamoDB to prevent concurrent modifi
 If another user tries to modify the state simultaneously, they must wait for the lock to be released.
 
 5. what you did with Jenkins?
-6. "**How are you integrating the SonarQube with the Jenkins server?**"
+6. "**How are you integrating the SonarQube with the Jenkins server?"
    - Install SonarQube Plugin in Jenkins
    - Configure SonarQube in Jenkins
    - Configure Sonar Scanner in Jenkins
@@ -95,15 +95,21 @@ A StatefulSet in Kubernetes is a workload API object designed to manage stateful
  - ***Organizations SCP (Service Control Policies):*** These are used in AWS Organizations to set permissions across accounts in the organization. SCPs define what actions are allowed or denied for accounts, organizational units, or the entire organization.
 
 15. ***So what is the difference between the S3 bucket policies and acls?***
-**S3 Bucket Policies:**
-Scope: Apply at the bucket level (or optionally to objects within the bucket).
-Granularity: Provide more fine-grained control over permissions. You can specify actions (like s3:GetObject, s3:PutObject), resources (e.g., specific objects or buckets), and conditions (like IP address, user agent, or time).
-Usage: Typically used for more complex permission scenarios, such as granting cross-account access or enforcing restrictions on actions (e.g., allowing access only from certain IP addresses).
 
-***ACLs (Access Control Lists):***
-Scope: Apply at both the bucket and object level.
-Granularity: Provide more limited control compared to bucket policies. ACLs grant predefined permissions, such as READ, WRITE, FULL_CONTROL on buckets or objects. You cannot specify actions or conditions like in bucket policies.
-Usage: Often used for simpler access control, like enabling public access to objects or providing access to a specific user or group.
+| Feature | Bucket Policies | Access Control Lists (ACLs) |
+|---|---|---|
+| **Scope** | Apply to the entire bucket and all objects within it (unless overridden by object ACLs) | Apply to individual buckets or objects |
+| **Policy Language** | Uses JSON-based policy language, offering fine-grained control | Uses a predefined set of grants (read, write, full control) |
+| **Granularity** | Highly granular, allowing control based on user, IP address, time, and other conditions | Less granular, limited to predefined permissions |
+| **Complexity** | More complex to write and manage, but offers greater flexibility | Simpler to use for basic access control |
+| **Management** | Managed at the bucket level | Managed at the bucket or object level |
+| **Capabilities** | Supports complex conditions, including IAM roles, user groups, and IP address ranges | Primarily for simple grant/deny access |
+| **Permissions Inheritance** | Policies apply to all objects unless overridden by object ACLs | Object ACLs override bucket ACLs and policies |
+| **Use Cases** | Complex access control scenarios, cross-account access, restricting access based on conditions | Quick and simple access grants, legacy systems |
+| **Default Setting** | By default, buckets and objects are private. Bucket policies must be explicitly attached. | By default, buckets and objects are private. ACLs must be explicitly granted. |
+| **Control over Principal** | Defines what principals(users, services) can do. | Defines who(principals) can do what. |
+| **Recommended Usage** | AWS recommends using bucket policies for most access control scenarios. | AWS recommends using bucket policies and IAM roles instead of ACLs where possible. ACLs are considered a legacy access control mechanism. |
+
 
 
 16. ***what is the dynamic auto scaling?***
