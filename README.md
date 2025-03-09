@@ -1049,7 +1049,16 @@ https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html#:~:text=
 25) what is gated checkedin 
 26) where will save the passwords in aws and how do you call in pipelines
 27) what is SBOM tool
-
+28) Command to list down all the remote repository branches.
+29) Difference between branch and tag.
+30) Difference between Git fetch and Git clone.
+31) Command to revert changes from staging area to working area.
+32) What does Git revert command do.
+33) How can we change default port number of Jenkins.
+34) What are sticky sessions.
+35) What is a difference between Poll SCM and Build Periodically.
+36) How do you maintain backup in Jenkins.
+37) What are views in Jenkins. How do we create views.
 
 
 # Service mesh
