@@ -133,7 +133,7 @@ To securely manage credentials and API keys in Docker containers, follow these b
 **Use Environment Variables (Not Hardcoded)**
    - Pass secrets via `-e` flag or `docker-compose.yml` instead of hardcoding them.  
    - Example:  
-     ```bash
+     ```
      docker run -e API_KEY=your_secret_key myapp
      ```
 
