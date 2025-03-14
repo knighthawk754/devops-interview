@@ -1112,6 +1112,7 @@ https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html#:~:text=
 32) What does Git revert command do.
 33) How can we change default port number of Jenkins.
 34) What are sticky sessions.
+    **Sticky Sessions** (also known as **Session Affinity**) in AWS are a feature used in **Elastic Load Balancing (ELB)** to ensure that a client is consistently directed to the same backend server (EC2 instance) during a session. This is important for applications that require session persistence, meaning a user's session data (e.g., login state, cart items) must be stored on a specific server for the duration of their interaction with the application.
 35) What is a difference between Poll SCM and Build Periodically.
 36) How do you maintain backup in Jenkins.
 37) What are views in Jenkins. How do we create views.
