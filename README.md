@@ -19,6 +19,62 @@ resource "aws_s3_bucket" "buckets" {
   }
 }
 ```
+
+```
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_s3_bucket" "my_bucket" {
+  bucket = "my-terraform-s3-bucket-12345"  # Replace with a unique name
+  acl    = "private"
+
+  tags = {
+    Name        = "MyTerraformS3Bucket"
+    Environment = "Dev"
+  }
+}
+
+# Enable Versioning
+resource "aws_s3_bucket_versioning" "versioning" {
+  bucket = aws_s3_bucket.my_bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+# Lifecycle Rule - Deletes objects after 30 days
+resource "aws_s3_bucket_lifecycle_configuration" "lifecycle" {
+  bucket = aws_s3_bucket.my_bucket.id
+
+  rule {
+    id     = "delete-old-objects"
+    status = "Enabled"
+
+    expiration {
+      days = 30
+    }
+  }
+}
+
+# Enable Server-Side Encryption
+resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
+  bucket = aws_s3_bucket.my_bucket.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
+}
+
+output "s3_bucket_name" {
+  value = aws_s3_bucket.my_bucket.id
+}
+
+```
+
+
 2. **How you managed statefile**
 In Terraform, the state file (terraform.tfstate) is managed in two ways:
 **Local State (Default)** Stored in the local directory where Terraform is run.
@@ -1059,6 +1115,12 @@ https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html#:~:text=
 35) What is a difference between Poll SCM and Build Periodically.
 36) How do you maintain backup in Jenkins.
 37) What are views in Jenkins. How do we create views.
+38) what is the use of terraform refresh 
+- **`terraform apply -refresh-only`**: This updates the state without making any changes to the infrastructure.
+- **`terraform plan -refresh-only`**: This shows what would be updated in the state without applying changes.
+    - **Detect Drift**: If changes were made manually to cloud resources, `terraform refresh` would update the state file.
+	- **Update Outputs**: It ensured that output values reflected the current infrastructure.
+	- **Prepare for Planning**: It helped in syncing Terraform state before running `terraform plan`.
 
 
 # Service mesh
