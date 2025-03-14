@@ -1122,7 +1122,260 @@ https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html#:~:text=
 	- **Update Outputs**: It ensured that output values reflected the current infrastructure.
 	- **Prepare for Planning**: It helped in syncing Terraform state before running `terraform plan`.
 
+16) how to give a memory and cpu using kubectl command    
+```
+kubectl set resources deployment <deployment-name> \
+  --limits=cpu=500m,memory=512Mi \
+  --requests=cpu=250m,memory=256Mi
+```
+39) how to schedule the jobs in jenkins for slave jenkins
+40) write a script to print the even or odd using the input which we get from the user
+```
+#!/bin/bash
+# Prompt the user for input
+read -p "Enter a number: " num
+# Check if the number is even or odd
+if (( num % 2 == 0 )); then
+    echo "$num is an Even number."
+else
+    echo "$num is an Odd number."
+fi
 
+```
+41) how to resolve the merge conflict
+42) difference between the plan and apply in terraform
+43) tell me about the tf files
+      In **Terraform**, `.tf` files (Terraform configuration files) are used to define infrastructure resources and manage their lifecycle. These files contain the code written in **HashiCorp Configuration Language (HCL)**, which is a domain-specific language designed to describe infrastructure in a human-readable way.
+
+### **Key Points About `.tf` Files:**
+
+1. **Main Configuration File (`main.tf`)**:
+    
+    - This is the primary configuration file that contains the definitions for your infrastructure resources.
+    - It typically includes resources like virtual machines, networks, storage, etc., that you want to manage.
+    
+    **Example:**
+    
+    ```hcl
+    resource "aws_instance" "example" {
+      ami           = "ami-123456"
+      instance_type = "t2.micro"
+    }
+    ```
+    
+2. **Variables File (`variables.tf`)**:
+    
+    - This file is used to define variables that are used across your Terraform configuration.
+    - It allows you to make your configuration more flexible and reusable by specifying inputs dynamically.
+    
+    **Example:**
+    
+    ```hcl
+    variable "instance_type" {
+      description = "The instance type"
+      default     = "t2.micro"
+    }
+    ```
+    
+3. **Outputs File (`outputs.tf`)**:
+    
+    - This file defines outputs that can be used after Terraform applies the configuration, such as information about the infrastructure that was created (e.g., public IP, instance ID).
+    - Outputs can be used in other Terraform configurations or displayed after execution.
+    
+    **Example:**
+    
+    ```hcl
+    output "instance_ip" {
+      value = aws_instance.example.public_ip
+    }
+    ```
+    
+4. **Provider Configuration (`provider.tf`)**:
+    
+    - Providers define the infrastructure you are managing (e.g., AWS, Azure, GCP).
+    - This file specifies which provider to use and any necessary credentials or configuration for it.
+    
+    **Example:**
+    
+    ```hcl
+    provider "aws" {
+      region = "us-east-1"
+    }
+    ```
+    
+5. **State File (`terraform.tfstate`)**:
+    
+    - This file holds the state of your Terraform-managed infrastructure.
+    - It tracks what resources exist and their current configuration.
+    - It is usually generated automatically after running `terraform apply` and should **never** be manually edited.
+    
+    **Note**: If you're using a remote backend (e.g., S3, Azure Storage), the state file is stored remotely.
+    
+6. **Terraform Initialization File (`terraform init`)**:
+    
+    - When you run `terraform init`, it initializes your project and downloads the required provider plugins.
+7. **Backend Configuration (`backend.tf`)**:
+    
+    - This file defines where Terraform will store the state file.
+    - You can configure it to use a local file or a remote backend (e.g., AWS S3, Azure Blob Storage).
+    
+    **Example:**
+    
+    ```hcl
+    terraform {
+      backend "s3" {
+        bucket = "my-tf-state"
+        key    = "path/to/my/state"
+        region = "us-east-1"
+      }
+    }
+    ```
+    
+8. **Modules (`modules/`)**:
+    
+    - If your infrastructure code grows larger, you can organize it into modules for better structure and reusability.
+    - A module can be defined within a separate directory and referenced inside your main configuration.
+    
+    **Example:**
+    
+    ```hcl
+    module "network" {
+      source = "./modules/network"
+      cidr_block = "10.0.0.0/16"
+    }
+    ```
+    
+9. **Data Sources (`data.tf`)**:
+    
+    - Data sources allow you to query existing resources outside of your Terraform configuration, such as retrieving data from an existing AWS instance or a list of available AMIs.
+    
+    **Example:**
+    
+    ```hcl
+    data "aws_ami" "latest" {
+      most_recent = true
+      owners      = ["amazon"]
+      filters = {
+        name = "amzn2-ami-hvm-*-x86_64-gp2"
+      }
+    }
+    ```
+    
+
+---
+
+### **Basic Workflow in Terraform**
+
+1. **Write your `.tf` configuration files**: Define resources, providers, variables, outputs, etc.
+    
+2. **Initialize your configuration**:
+    
+    ```sh
+    terraform init
+    ```
+    
+    This downloads the required provider plugins.
+    
+3. **Preview your changes**:
+    
+    ```sh
+    terraform plan
+    ```
+    
+    This shows what Terraform will do before making any changes.
+    
+4. **Apply your changes**:
+    
+    ```sh
+    terraform apply
+    ```
+    
+    This applies the changes, creating, modifying, or destroying resources as needed.
+    
+5. **Inspect the current state**:
+    
+    ```sh
+    terraform state list
+    ```
+    
+6. **Destroy resources** (if needed):
+    
+    ```sh
+    terraform destroy
+    ```
+    
+
+---
+
+### **Best Practices**
+
+- **Version Control**: Always store `.tf` files in version control (e.g., Git) to manage infrastructure as code.
+- **Modularize**: Use modules to break down complex infrastructure into reusable parts.
+- **Remote State**: Use a remote backend (like S3, Azure Blob, or Terraform Cloud) for better collaboration and to prevent accidental state loss.
+
+---
+
+### **Example Directory Structure:**
+
+```
+my-terraform-project/
+  ├── main.tf          # Resource definitions
+  ├── provider.tf      # Provider configurations
+  ├── variables.tf     # Input variables
+  ├── outputs.tf       # Outputs
+  ├── backend.tf       # Remote state configuration
+  └── modules/         # Custom modules (optional)
+      └── network/     # Module for network setup
+          └── main.tf
+```
+
+---
+
+In summary, **Terraform `.tf` files** help define infrastructure, manage inputs/outputs, and interact with providers in a clear and structured way. You organize resources, variables, and other configurations in these files to automate infrastructure management.
+
+Let me know if you'd like to dive deeper into any specific file type or feature! 😊
+44) where do you declare  the remote backend file in local terraform files
+45) what is terraform workspace
+Certainly! Here's a crisp yet detailed explanation for an interview:
+### **Terraform Workspaces - Explanation**
+
+**Definition**:  
+Terraform workspaces are used to manage multiple, isolated environments (like development, staging, and production) within a single Terraform project. Each workspace maintains its own state file, ensuring that changes in one environment do not affect others.
+
+### **How Workspaces Work**:
+
+- Each **workspace** has its own **state** that tracks resources.
+- **State isolation**: Separate environments (e.g., `dev`, `prod`) are managed in the same project without overlapping state.
+- You can easily switch between environments using workspaces.
+
+### **Common Use Cases**:
+
+- **Multiple Environments**: Use workspaces to manage separate states for different environments (e.g., `dev`, `staging`, `prod`).
+- **State Management**: Avoid duplication of configurations for different environments by using workspaces to isolate the state while keeping the same codebase.
+
+### **Key Commands**:
+
+- **List Workspaces**: `terraform workspace list` — Lists all workspaces.
+- **Create Workspace**: `terraform workspace new <workspace-name>` — Creates a new workspace (e.g., `terraform workspace new dev`).
+- **Switch Workspace**: `terraform workspace select <workspace-name>` — Switch between environments.
+- **Show Current Workspace**: `terraform workspace show` — Displays the current active workspace.
+
+### **Example**:
+
+1. **Create `dev` workspace**:  
+    `terraform workspace new dev`
+2. **Switch to `prod` workspace**:  
+    `terraform workspace select prod`
+3. **Work on different environments**:  
+    Apply changes to `dev` and `prod` independently, with each having its own isolated state.
+
+### **Benefits**:
+
+- **Environment Isolation**: Keeps state files separate for different environments.
+- **Efficiency**: One codebase for multiple environments without redundant configurations.
+- **Flexibility**: Easily switch between environments while maintaining their unique states.
+
+ 
 # Service mesh
 
 67) Main components of servicemesh.
